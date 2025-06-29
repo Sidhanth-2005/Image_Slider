@@ -1,0 +1,227 @@
+body{
+    font-family: Poppins;
+    background-color: black;
+    margin: 0%;
+    font-size: 20px;
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: aliceblue;
+}
+header{
+    height: 50px;
+    width: 1140px;
+    max-width: 80%;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header a{
+    margin-right: 40px;
+}
+.picture{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: -50px;
+    position: relative;
+}
+.picture .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.picture .list .item img{
+    width: 100%;
+    height: 100%;
+}
+.picture .list .item .content{
+    position: absolute;
+    top: 30%;
+    width: 1140px;
+    max-width: 80%;
+    padding-left: 10%;
+    box-sizing: border-box;
+    color: white;
+}
+.picture .list .item .content .author{
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+.picture .list .item .content .title,
+.picture .list .item .content .topic{
+    font-weight: bold;
+    font-size: 3em;
+}
+.picture .list .item .content .topic{
+    color: yellow;
+}
+.picture .list .item .content .button{
+    display: grid;
+    grid-template-columns: repeat(2,140px);
+    grid-template-rows: 40px;
+    gap: 10px;
+    margin-top: 20px;
+    
+}
+.picture .list .item .content button{
+    border: none;
+    font-family: Poppins;
+    background-color: white;
+    letter-spacing: 3px;
+    font-weight: 1000;
+}
+.picture .list .item .content button:nth-child(2){
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+}
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+}
+.thumbnail .item{
+    height: 250px;
+    width: 180px;
+    position: relative;
+}
+.thumbnail .item img{
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    object-fit: fill;
+}
+.thumbnail .item .content{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-weight: bold;
+}
+.arrows{
+    position: absolute;
+    top: 80%;
+    left: 15%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    font-weight: bolder;
+    color: white;
+    font-size: large;
+    transition: background-color 0.2s ease;
+    z-index: 50;
+}
+.arrows button:hover{
+    color: black;
+    background-color: white;
+}
+.picture .list .item:nth-child(1){
+    z-index: 1;
+}
+.picture .list .item:nth-child(1) .content{
+    filter: blur(10px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear 1 forwards;
+    animation-delay: 1.0s;
+}
+@keyframes showContent {
+    to{
+    opacity: 1;
+    filter: blur(0);
+    transition: translateY(1.6s);
+    }
+}
+/*next effect*/
+.picture.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    border-radius: 30px;
+    animation: showImage 0.5s linear 1 forwards;
+}
+@keyframes showImage {
+    to{
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        border-radius: 0;
+    }
+    
+}
+.picture.next .thumbnail .item:nth-last-child(1){
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+@keyframes showThumbnail {
+    to{
+        width: 180px;
+    }
+}
+.picture.next .thumbnail{
+    transform: translateX(150px);
+    animation: transformThumbnail .5s linear 1 forwards;
+}
+@keyframes transformThumbnail {
+    to{
+        transform: translateX(0);
+    }
+}
+/*prev effect*/
+.picture.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+.picture.prev .list .item:nth-child(2) img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: Outimage .5s linear 1 forwards;
+}
+@keyframes Outimage {
+    to{
+        width: 150px;
+        height: 220px;
+        left: 50%;
+        bottom: 50px;
+        border-radius: 30px;
+    }
+}
+.picture.prev .thumbnail .item:nth-child(1){
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.picture.prev .list .item:nth-child(2) .content{
+    animation: contentOut .5s linear 1 forwards;
+}
+@keyframes contentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 678px){
+    .picture .list .item .content{
+        padding-right: 0;
+    }
+    .picture .list .item .content .title{
+        font-size: 20px;
+    }
+}
